@@ -20,7 +20,7 @@ import { MdBookmarkAdd } from "react-icons/md";
 import authContext from "../context/AuthContext";
 
 const NavbarR = () => {
-  const { user, logOut } = useContext(authContext);
+  const { user, signOutUser } = useContext(authContext);
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -177,8 +177,8 @@ const NavbarR = () => {
                     <div>{profile}</div>
                   </MenuList>
                 </Menu>
-                <Link onClick={logOut} className="hidden lg:block">
-                  <Button variant="text" size="sm" className="btn">
+                <Link onClick={signOutUser} className="hidden lg:block">
+                  <Button variant="gradient" size="sm" className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none">
                     <span>Log Out</span>
                   </Button>
                 </Link>
@@ -245,8 +245,8 @@ const NavbarR = () => {
                   <span>Add account</span>
                 </Button>
               </Link>
-              <Link onClick={logOut} className="block w-full">
-                <Button variant="gradient" size="sm" className="btn w-full">
+              <Link onClick={signOutUser} className="block w-full">
+                <Button variant="gradient" size="sm" className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none w-full">
                   <span>Log Out</span>
                 </Button>
               </Link>
@@ -259,7 +259,7 @@ const NavbarR = () => {
                 </Button>
               </Link>
               <Link to="/register" className="block w-full">
-                <Button variant="gradient" size="sm" className="btn w-full">
+                <Button variant="gradient" size="sm" className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none w-full">
                   <span>Register</span>
                 </Button>
               </Link>

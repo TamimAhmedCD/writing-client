@@ -30,10 +30,11 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-      // Update user profile
-      const updateUserProfile = (updatedData) => {
-        return updateProfile(auth.currentUser, updatedData);
-      };
+  // Update user profile
+  const updateUserProfile = (updatedData) => {
+    setLoading(true)
+    return updateProfile(auth.currentUser, updatedData);
+  };
 
   // signIin with google
   const signInWithGoogle = () => {
@@ -43,25 +44,27 @@ const AuthProvider = ({ children }) => {
 
   // signOut user
   const signOutUser = () => {
-    setLoading(true);
+    setLoading(false);
     return signOut(auth);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false)
     });
     return unsubscribe;
   }, []);
 
   const authInfo = {
     user,
+    setUser,
     loading,
     createUser,
     singInUser,
     signOutUser,
     signInWithGoogle,
-    updateUserProfile
+    updateUserProfile,
   };
 
   return (
