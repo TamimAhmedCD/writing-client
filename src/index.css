@@ -11,4 +11,6 @@ body {
     background-color: #eeeefd;
     padding: 6px 15px;
     border-radius: 5px;
+    transition: all;
+    transition-duration: 0.40s;
 }
