@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../layout/layout";
 import Home from "../pages/Home/Home";
-import AllBlogs from './../pages/AllBlogs/AllBlogs';
-import AddBlog from './../pages/AddBlog/AddBlog';
-import FeaturedBlogs from './../pages/FeaturedBlogs/FeaturedBlogs';
-import Login from './../pages/Login/Login';
-import Register from './../pages/Register/Register';
+import AllBlogs from "./../pages/AllBlogs/AllBlogs";
+import AddBlog from "./../pages/AddBlog/AddBlog";
+import FeaturedBlogs from "./../pages/FeaturedBlogs/FeaturedBlogs";
+import Login from "./../pages/Login/Login";
+import Register from "./../pages/Register/Register";
+import PrivateRoutes from "./PrivateRoutes";
 
 const route = createBrowserRouter([
   {
@@ -22,11 +23,19 @@ const route = createBrowserRouter([
       },
       {
         path: "/add-blog",
-        element: <AddBlog />,
+        element: (
+          <PrivateRoutes>
+            <AddBlog />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/featured-blogs",
-        element: <FeaturedBlogs />,
+        element: (
+          <PrivateRoutes>
+            <FeaturedBlogs />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",
