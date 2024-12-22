@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Hero from "../../components/Hero";
 import TrendingCategory from "../../components/TrendingCategory";
+import Blogs from "../../components/Blogs";
 
 const Home = () => {
   useEffect(() => {
@@ -10,6 +11,7 @@ const Home = () => {
     <div>
       <Hero />
       <TrendingCategory />
+      <Blogs />
     </div>
   );
 };

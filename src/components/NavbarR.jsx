@@ -121,7 +121,7 @@ const NavbarR = () => {
               <div className="flex items-center gap-x-3">
                 {/* WatchList Menu */}
                 <NavLink to="/watch-list">
-                  <MdBookmarkAdd className="text-3xl text-white" />
+                  <MdBookmarkAdd className="text-3xl text-light-primary-color" />
                 </NavLink>
                 {/* Profile Menu */}
                 <Menu placement="bottom-start">
