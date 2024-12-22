@@ -1,6 +1,12 @@
 import { Button } from "@material-tailwind/react";
+import { useContext } from "react";
+import authContext from "./../../context/AuthContext";
 
 const AddBlog = () => {
+  const { user } = useContext(authContext);
+  const userEmail = user.email;
+  const userPhoto = user.photoURL;
+  const authorName = user.displayName;
   // Post Blog
   const handleBlogPost = (e) => {
     e.preventDefault();
@@ -8,21 +14,26 @@ const AddBlog = () => {
     const initialData = Object.fromEntries(formData.entries());
 
     const newBlog = initialData;
-    
-    newBlog.addTags = initialData.addTags.split('\n')
 
-    fetch('http://localhost:5000/blog', {
-        method: "POST",
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(newBlog)
+    newBlog.addTags = initialData.addTags.split("\n");
+    newBlog.userEmail = userEmail;
+    newBlog.userPhoto = userPhoto;
+    newBlog.authorName = authorName;
+    const createdAt = new Date().toISOString();
+    newBlog.createdAt = createdAt;
+    console.log(newBlog);
+
+    fetch("http://localhost:5000/blog", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newBlog),
     })
-    .then(res => res.json())
-    .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-    })
-
+      });
   };
 
   return (
@@ -101,12 +112,12 @@ const AddBlog = () => {
                     <span className="label-text">Add Tags</span>
                   </label>
                   <textarea
-                  className="textarea h-12 textarea-bordered"
-                  placeholder="Enter Your Long Description"
-                  id="longDes"
-                  name="addTags"
-                  required
-                ></textarea>
+                    className="textarea h-12 textarea-bordered"
+                    placeholder="Enter Your Long Description"
+                    id="longDes"
+                    name="addTags"
+                    required
+                  ></textarea>
                 </div>
               </div>
 
