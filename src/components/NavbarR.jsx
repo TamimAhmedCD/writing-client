@@ -13,10 +13,9 @@ import {
 
 import logo from "../assets/logo.svg";
 import { Link, NavLink } from "react-router-dom";
-import { FaCircleUser } from "react-icons/fa6";
+import { FaCircleUser, FaHeart } from "react-icons/fa6";
 import { HiInboxArrowDown } from "react-icons/hi2";
 import { IoIosHelpBuoy, IoMdSettings } from "react-icons/io";
-import { MdBookmarkAdd } from "react-icons/md";
 import authContext from "../context/AuthContext";
 
 const NavbarR = () => {
@@ -120,8 +119,8 @@ const NavbarR = () => {
             {user ? (
               <div className="flex items-center gap-x-3">
                 {/* WatchList Menu */}
-                <NavLink to="/watch-list">
-                  <MdBookmarkAdd className="text-3xl text-light-primary-color" />
+                <NavLink to="/wish-list">
+                  <FaHeart className="text-3xl text-light-primary-color" />
                 </NavLink>
                 {/* Profile Menu */}
                 <Menu placement="bottom-start">

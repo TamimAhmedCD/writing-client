@@ -8,6 +8,7 @@ import Login from "./../pages/Login/Login";
 import Register from "./../pages/Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import ErrorPage from "../pages/Error/ErrorPage";
+import Wishlist from "../pages/Wishlist/Wishlist";
 
 const route = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ const route = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <FeaturedBlogs />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/wish-list",
+        element: (
+          <PrivateRoutes>
+            <Wishlist />
           </PrivateRoutes>
         ),
       },
