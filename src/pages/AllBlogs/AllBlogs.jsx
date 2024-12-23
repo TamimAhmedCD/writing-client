@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../Home/Loading";
 import { Link } from "react-router-dom";
 import { MdTimer } from "react-icons/md";
-import { Button } from "@material-tailwind/react";
+import { Button, IconButton } from "@material-tailwind/react";
+import authContext from "../../context/AuthContext";
+import { FaHeart } from "react-icons/fa6";
 
 const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [searchQuery, setSearchQuery] = useState("");
+  const { user } = useContext(authContext);
 
   useEffect(() => {
     fetchAllBlogs();
@@ -133,7 +136,10 @@ const AllBlogs = () => {
             className="p-3 bg-transparent outline-none placeholder-[#0000005d] w-28 lg:w-full"
           />
         </div>
-        <Button size="md" className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none">
+        <Button
+          size="md"
+          className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
+        >
           Search
         </Button>
       </div>
@@ -219,14 +225,25 @@ const AllBlogs = () => {
                   </div>
 
                   {/* Discover More Button */}
-                  <Link className="mt-5">
-                    <Button
-                      variant="gradient"
-                      className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
-                    >
-                      <span>Discover More</span>
-                    </Button>
-                  </Link>
+                  <div className="mt-5 flex gap-3 items-center">
+                    {" "}
+                    <Link>
+                      <Button
+                        variant="gradient"
+                        className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
+                      >
+                        <span>Discover More</span>
+                      </Button>
+                    </Link>
+                    {user && (
+                      <IconButton
+                        size=""
+                        className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
+                      >
+                        <FaHeart></FaHeart>
+                      </IconButton>
+                    )}
+                  </div>
                 </div>
               </div>
             );

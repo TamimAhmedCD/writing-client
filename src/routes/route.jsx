@@ -43,9 +43,9 @@ const route = createBrowserRouter([
       {
         path: "/wish-list",
         element: (
-          <PrivateRoutes>
+          // <PrivateRoutes>
             <Wishlist />
-          </PrivateRoutes>
+          // </PrivateRoutes>
         ),
       },
       {

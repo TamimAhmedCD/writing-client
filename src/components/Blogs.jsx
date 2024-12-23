@@ -1,12 +1,15 @@
-import { Button } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { Button, IconButton } from "@material-tailwind/react";
+import { useContext, useEffect, useState } from "react";
 import { MdTimer } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Loading from "./../pages/Home/Loading";
+import { FaHeart } from "react-icons/fa6";
+import authContext from "../context/AuthContext";
 
 const Blogs = () => {
   const [recentBlog, setRecentBlog] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useContext(authContext);
 
   // Fetch recent blogs data from API
   useEffect(() => {
@@ -76,7 +79,9 @@ const Blogs = () => {
                     <p className="font-medium text-light-accent">
                       {blog.authorName}
                     </p>
-                    <p className="font-medium text-gray-700">on {formattedDate}</p>
+                    <p className="font-medium text-gray-700">
+                      on {formattedDate}
+                    </p>
                   </div>
 
                   {/* Blog Title */}
@@ -93,14 +98,25 @@ const Blogs = () => {
                 </div>
 
                 {/* Discover More Button */}
-                <Link className="mt-5">
-                  <Button
-                    variant="gradient"
-                    className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
-                  >
-                    <span>Discover More</span>
-                  </Button>
-                </Link>
+                <div className="mt-5 flex gap-3 items-center">
+                  {" "}
+                  <Link>
+                    <Button
+                      variant="gradient"
+                      className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
+                    >
+                      <span>Discover More</span>
+                    </Button>
+                  </Link>
+                  {user && (
+                    <IconButton
+                      size=""
+                      className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
+                    >
+                      <FaHeart></FaHeart>
+                    </IconButton>
+                  )}
+                </div>
               </div>
             </div>
           );
