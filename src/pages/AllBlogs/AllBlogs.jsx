@@ -10,7 +10,7 @@ const AllBlogs = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");  // State for search query
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
 
   useEffect(() => {
     fetchAllBlogs();
@@ -60,7 +60,7 @@ const AllBlogs = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/search?q=${query}`  // API endpoint with query parameter
+        `http://localhost:5000/search?q=${query}` // API endpoint with query parameter
       );
       setBlogs(response.data);
       setLoading(false);
@@ -123,14 +123,19 @@ const AllBlogs = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="flex justify-center mt-5">
-        <input
-          type="text"
-          placeholder="Search blogs..."
-          className="p-3 w-1/2 rounded-lg shadow-md"
-          value={searchQuery}
-          onChange={handleSearchChange}  // Handle search input change
-        />
+      <div className="search-bar mb-6 p-2 bg-[#9895ff38] rounded-lg flex items-center justify-between lg:w-6/12 mx-auto  mt-6">
+        <div className="flex items-center">
+          <input
+            type="text"
+            placeholder="Search by Blog Title"
+            value={searchQuery}
+            onChange={handleSearchChange} // Handle search input change
+            className="p-3 bg-transparent outline-none placeholder-[#0000005d] w-28 lg:w-full"
+          />
+        </div>
+        <Button size="md" className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none">
+          Search
+        </Button>
       </div>
 
       {/* blog by category */}
