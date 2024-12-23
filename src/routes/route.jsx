@@ -7,10 +7,12 @@ import FeaturedBlogs from "./../pages/FeaturedBlogs/FeaturedBlogs";
 import Login from "./../pages/Login/Login";
 import Register from "./../pages/Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
+import ErrorPage from "../pages/Error/ErrorPage";
 
 const route = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage />,
     element: <Layout />,
     children: [
       {
