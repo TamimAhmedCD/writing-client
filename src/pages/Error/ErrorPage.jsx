@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   useEffect(() => {
-    document.title = "Error | Chill Gamer";
+    document.title = "Error | Writing";
   }, []);
 
   return (

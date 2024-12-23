@@ -103,15 +103,15 @@ const NavbarR = () => {
   );
   return (
     <div className="sticky top-0 z-10">
-      <Navbar className="bg-[hsla(240, 63%, 13%, 1)] h-max max-w-full rounded-none border-none px-0 py-2 lg:py-4 shadow-none">
+      <Navbar className="bg-white h-max max-w-full rounded-none border-none px-0 py-2 lg:py-4 shadow-none">
         <div className="flex items-center justify-between text-blue-gray-900 lg:w-10/12 w-11/12 mx-auto">
-          <Link to='/'>
+          <Link to="/">
             <Typography
               as="a"
               href="#"
               className="mr-4 cursor-pointer py-1.5 font-semibold text-light-primary-color flex items-center"
             >
-              <img src={logo} alt="" className="mr-2 w-11"/>
+              <img src={logo} alt="" className="mr-2 w-11" />
               <h1 className="uppercase text-lg">Writing</h1>
             </Typography>
           </Link>
@@ -178,7 +178,11 @@ const NavbarR = () => {
                   </MenuList>
                 </Menu>
                 <Link onClick={signOutUser} className="hidden lg:block">
-                  <Button variant="gradient" size="sm" className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none">
+                  <Button
+                    variant="gradient"
+                    size="sm"
+                    className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
+                  >
                     <span>Log Out</span>
                   </Button>
                 </Link>
@@ -191,7 +195,11 @@ const NavbarR = () => {
                   </Button>
                 </Link>
                 <Link to="/register" className="hidden lg:block">
-                  <Button variant="gradient" size="sm" className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none">
+                  <Button
+                    variant="gradient"
+                    size="sm"
+                    className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
+                  >
                     <span>Register</span>
                   </Button>
                 </Link>
@@ -246,7 +254,11 @@ const NavbarR = () => {
                 </Button>
               </Link>
               <Link onClick={signOutUser} className="block w-full">
-                <Button variant="gradient" size="sm" className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none w-full">
+                <Button
+                  variant="gradient"
+                  size="sm"
+                  className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none w-full"
+                >
                   <span>Log Out</span>
                 </Button>
               </Link>
@@ -259,7 +271,11 @@ const NavbarR = () => {
                 </Button>
               </Link>
               <Link to="/register" className="block w-full">
-                <Button variant="gradient" size="sm" className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none w-full">
+                <Button
+                  variant="gradient"
+                  size="sm"
+                  className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none w-full"
+                >
                   <span>Register</span>
                 </Button>
               </Link>

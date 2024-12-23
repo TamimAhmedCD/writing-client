@@ -42,7 +42,7 @@ const Blogs = () => {
           const formattedDate = formatDate(blog.createdAt); // Format each blog's date
 
           return (
-            <div key={blog._id} className="space-y-5 flex flex-col">
+            <div key={blog._id} className="space-y-5 flex flex-col mb-5">
               {/* Blog Cover Image */}
               <Link>
                 <div className="relative group">
@@ -76,7 +76,7 @@ const Blogs = () => {
                     <p className="font-medium text-light-accent">
                       {blog.authorName}
                     </p>
-                    <p className="font-medium text-gray-700">{formattedDate}</p>
+                    <p className="font-medium text-gray-700">on {formattedDate}</p>
                   </div>
 
                   {/* Blog Title */}
