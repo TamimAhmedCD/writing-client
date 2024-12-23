@@ -107,6 +107,32 @@ const AllBlogs = () => {
     });
   };
 
+    // Handle adding blog to wishlist
+    const handleAddToWishlist = async (blog) => {
+      if (!user) {
+        alert("Please log in to add items to your wishlist.");
+        return;
+      }
+  
+      const wishlistData = {
+        userEmail: user.email,
+        blogId: blog._id,
+        blogImg: blog.blogImg,
+        shortDes: blog.shortDes,
+        blogTitle: blog.blogTitle,
+      };
+  
+      axios
+        .post("http://localhost:5000/wishlist", wishlistData, {
+          headers: {
+            "Content-Type": "application/json", // Set the content type to JSON
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
+    };
+
   return (
     <div className="w-11/12 md:w-10/12 mx-auto">
       {/* header */}
@@ -236,7 +262,7 @@ const AllBlogs = () => {
                       </Button>
                     </Link>
                     {user && (
-                      <IconButton
+                      <IconButton onClick={() => handleAddToWishlist(blog)}
                         size=""
                         className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
                       >

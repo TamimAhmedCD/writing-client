@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Loading from "./../pages/Home/Loading";
 import { FaHeart } from "react-icons/fa6";
 import authContext from "../context/AuthContext";
+import axios from "axios";
 
 const Blogs = () => {
   const [recentBlog, setRecentBlog] = useState([]);
@@ -36,6 +37,32 @@ const Blogs = () => {
       month: "long",
       day: "2-digit",
     });
+  };
+
+  // Handle adding blog to wishlist
+  const handleAddToWishlist = async (blog) => {
+    if (!user) {
+      alert("Please log in to add items to your wishlist.");
+      return;
+    }
+
+    const wishlistData = {
+      userEmail: user.email,
+      blogId: blog._id,
+      blogImg: blog.blogImg,
+      shortDes: blog.shortDes,
+      blogTitle: blog.blogTitle,
+    };
+
+    axios
+      .post("http://localhost:5000/wishlist", wishlistData, {
+        headers: {
+          "Content-Type": "application/json", // Set the content type to JSON
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
   };
 
   return (
@@ -108,14 +135,13 @@ const Blogs = () => {
                       <span>Discover More</span>
                     </Button>
                   </Link>
-                  {user && (
-                    <IconButton
-                      size=""
-                      className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
-                    >
-                      <FaHeart></FaHeart>
-                    </IconButton>
-                  )}
+                  <IconButton
+                    onClick={() => handleAddToWishlist(blog)}
+                    size=""
+                    className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
+                  >
+                    <FaHeart></FaHeart>
+                  </IconButton>
                 </div>
               </div>
             </div>
