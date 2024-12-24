@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import Comments from "../../components/Comments";
 
 const BlogDetails = () => {
   const blogs = useLoaderData();
@@ -58,6 +59,7 @@ const BlogDetails = () => {
           ))}
         </div>
       </div>
+      <Comments blogs={blogs} />
     </div>
   );
 };
