@@ -6,6 +6,7 @@ import Loading from "./../pages/Home/Loading";
 import { FaHeart } from "react-icons/fa6";
 import authContext from "../context/AuthContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Blogs = () => {
   const [recentBlog, setRecentBlog] = useState([]);
@@ -61,7 +62,9 @@ const Blogs = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        if(response.data) {
+          toast.success('Blog added on Wishlist')
+        };
       });
   };
 

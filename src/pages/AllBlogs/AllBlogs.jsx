@@ -6,6 +6,7 @@ import { MdTimer } from "react-icons/md";
 import { Button, IconButton } from "@material-tailwind/react";
 import authContext from "../../context/AuthContext";
 import { FaHeart } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -129,7 +130,9 @@ const AllBlogs = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          if(response.data) {
+            toast.success('Blog added on Wishlist')
+          }
         });
     };
 

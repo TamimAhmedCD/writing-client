@@ -5,12 +5,14 @@ import { IoMdClose } from "react-icons/io";
 import authContext from "../../context/AuthContext";
 import axios from "axios";
 import Loading from "../Home/Loading";
+import { toast } from "react-toastify";
 
 const WishList = () => {
   const { user } = useContext(authContext);
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
 
+    // Fetch wishlist data from the backend
   useEffect(() => {
     if (user) {
       axios
@@ -21,6 +23,17 @@ const WishList = () => {
         });
     }
   }, [user]);
+  
+  const handleDelete =async (blogId) => {
+    const response = await axios.delete("http://localhost:5000/wishlist", {
+      data: {userEmail: user.email, blogId}
+    })
+    setWishlist(wishlist.filter(item => item.blogId !== blogId))
+    
+    if(response.data.deletedCount >0) {
+      toast.success('Successfully Deleted Wishlist')
+    }
+  }
 
   if (loading) {
     return <Loading />;
@@ -45,7 +58,7 @@ const WishList = () => {
 
       {/* Wishlist Item */}
       {wishlist.length === 0 ? (
-        <>wishlist is empty</>
+        <div className="mt-5 text-xl font-medium">Wishlist is empty</div>
       ) : (
         wishlist.map((data) => (
           <div
@@ -72,7 +85,7 @@ const WishList = () => {
 
               {/* Actions */}
               <div className="flex flex-row-reverse md:flex-col items-start md:items-end gap-2 justify-between">
-                <IconButton
+                <IconButton onClick={() => handleDelete(data.blogId)}
                   size="sm"
                   className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
                 >
