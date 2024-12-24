@@ -203,7 +203,7 @@ const AllBlogs = () => {
             return (
               <div key={blog._id} className="space-y-5 flex flex-col mb-5">
                 {/* Blog Cover Image */}
-                <Link>
+                <Link to={`/blog-details/${blog._id}`}>
                   <div className="relative group">
                     <img
                       src={blog.blogImg}
@@ -241,7 +241,7 @@ const AllBlogs = () => {
                     </div>
 
                     {/* Blog Title */}
-                    <Link>
+                    <Link to={`/blog-details/${blog._id}`}>
                       <h1 className="my-3 text-xl text-light-primary-color font-bold hover:text-opacity-70 transition-all duration-300">
                         {blog.blogTitle}
                       </h1>
