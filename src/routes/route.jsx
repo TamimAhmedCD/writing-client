@@ -9,6 +9,7 @@ import Register from "./../pages/Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import ErrorPage from "../pages/Error/ErrorPage";
 import Wishlist from "../pages/Wishlist/Wishlist";
+import BlogDetails from "../pages/BlogDetails/BlogDetails";
 
 const route = createBrowserRouter([
   {
@@ -43,10 +44,19 @@ const route = createBrowserRouter([
       {
         path: "/wish-list",
         element: (
-          // <PrivateRoutes>
+          <PrivateRoutes>
             <Wishlist />
-          // </PrivateRoutes>
+          </PrivateRoutes>
         ),
+      },
+      {
+        path: "/blog-details/:id",
+        element: (
+          <PrivateRoutes>
+            <BlogDetails />
+          </PrivateRoutes>
+        ),
+        loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`)
       },
       {
         path: "/login",

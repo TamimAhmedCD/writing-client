@@ -108,33 +108,33 @@ const AllBlogs = () => {
     });
   };
 
-    // Handle adding blog to wishlist
-    const handleAddToWishlist = async (blog) => {
-      if (!user) {
-        alert("Please log in to add items to your wishlist.");
-        return;
-      }
-  
-      const wishlistData = {
-        userEmail: user.email,
-        blogId: blog._id,
-        blogImg: blog.blogImg,
-        shortDes: blog.shortDes,
-        blogTitle: blog.blogTitle,
-      };
-  
-      axios
-        .post("http://localhost:5000/wishlist", wishlistData, {
-          headers: {
-            "Content-Type": "application/json", // Set the content type to JSON
-          },
-        })
-        .then((response) => {
-          if(response.data) {
-            toast.success('Blog added on Wishlist')
-          }
-        });
+  // Handle adding blog to wishlist
+  const handleAddToWishlist = async (blog) => {
+    if (!user) {
+      toast.error("Please log in to add items to your wishlist.");
+      return;
+    }
+
+    const wishlistData = {
+      userEmail: user.email,
+      blogId: blog._id,
+      blogImg: blog.blogImg,
+      shortDes: blog.shortDes,
+      blogTitle: blog.blogTitle,
     };
+
+    axios
+      .post("http://localhost:5000/wishlist", wishlistData, {
+        headers: {
+          "Content-Type": "application/json", // Set the content type to JSON
+        },
+      })
+      .then((response) => {
+        if (response.data) {
+          toast.success("Blog added on Wishlist");
+        }
+      });
+  };
 
   return (
     <div className="w-11/12 md:w-10/12 mx-auto">
@@ -256,7 +256,7 @@ const AllBlogs = () => {
                   {/* Discover More Button */}
                   <div className="mt-5 flex gap-3 items-center">
                     {" "}
-                    <Link>
+                    <Link to={`/blog-details/${blog._id}`}>
                       <Button
                         variant="gradient"
                         className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
@@ -264,14 +264,13 @@ const AllBlogs = () => {
                         <span>Discover More</span>
                       </Button>
                     </Link>
-                    {user && (
-                      <IconButton onClick={() => handleAddToWishlist(blog)}
-                        size=""
-                        className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
-                      >
-                        <FaHeart></FaHeart>
-                      </IconButton>
-                    )}
+                    <IconButton
+                      onClick={() => handleAddToWishlist(blog)}
+                      size=""
+                      className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
+                    >
+                      <FaHeart></FaHeart>
+                    </IconButton>
                   </div>
                 </div>
               </div>

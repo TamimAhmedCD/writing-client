@@ -43,7 +43,7 @@ const Blogs = () => {
   // Handle adding blog to wishlist
   const handleAddToWishlist = async (blog) => {
     if (!user) {
-      alert("Please log in to add items to your wishlist.");
+      toast.error("Please log in to add items to your wishlist.");
       return;
     }
 
@@ -130,7 +130,7 @@ const Blogs = () => {
                 {/* Discover More Button */}
                 <div className="mt-5 flex gap-3 items-center">
                   {" "}
-                  <Link>
+                  <Link to={`/blog-details/${blog._id}`}>
                     <Button
                       variant="gradient"
                       className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
