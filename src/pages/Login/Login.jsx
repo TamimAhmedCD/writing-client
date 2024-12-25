@@ -28,7 +28,7 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         const user2 = {email: result.user.email}
-        axios.post('https://wirting-server.vercel.app/jwt', user2, {
+        axios.post('http://localhost:5000/jwt', user2, {
           withCredentials: true
         })
         .then(res => {

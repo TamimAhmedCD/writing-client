@@ -10,6 +10,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import ErrorPage from "../pages/Error/ErrorPage";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import WishList from "../pages/WishList/WishList";
+import UpdateBlog from "../pages/UpdateBlog/UpdateBlog";
 
 const route = createBrowserRouter([
   {
@@ -56,7 +57,16 @@ const route = createBrowserRouter([
             <BlogDetails />
           </PrivateRoutes>
         ),
-        loader: ({params}) => fetch(`https://wirting-server.vercel.app/blog/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`)
+      },
+      {
+        path: "/blog-update/:id",
+        element: (
+          <PrivateRoutes>
+            <UpdateBlog />
+          </PrivateRoutes>
+        ),
+        loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`)
       },
       {
         path: "/login",

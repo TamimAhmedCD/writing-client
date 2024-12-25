@@ -1,14 +1,17 @@
 import { Button } from "@material-tailwind/react";
-import { useContext } from "react";
-import authContext from "./../../context/AuthContext";
+import axios from "axios";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const AddBlog = () => {
-  const { user } = useContext(authContext);
-  const userEmail = user.email;
-  const userPhoto = user.photoURL;
-  const authorName = user.displayName;
+const UpdateBlog = () => {
+  const updateBlogs = useLoaderData();
+  const { _id, blogTitle, blogImg, category, addTags, shortDes, longDes } =
+    updateBlogs;
+
+    const navigate = useNavigate()
+
   // Post Blog
-  const handleBlogPost = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
@@ -16,24 +19,12 @@ const AddBlog = () => {
     const newBlog = initialData;
 
     newBlog.addTags = initialData.addTags.split("\n");
-    newBlog.userEmail = userEmail;
-    newBlog.userPhoto = userPhoto;
-    newBlog.authorName = authorName;
-    const createdAt = new Date().toISOString();
-    newBlog.createdAt = createdAt;
-    console.log(newBlog);
 
-    fetch("http://localhost:5000/blog", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newBlog),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+    const res = await axios.put(`http://localhost:5000/blog/${_id}`, newBlog);
+    if(res.data.modifiedCount >0) {
+        toast.success('Blog Updated Successfully')
+        navigate('/')
+    };
   };
 
   return (
@@ -51,12 +42,12 @@ const AddBlog = () => {
           <div className="lg:w-8/12 mx-auto md:w-10/12 w-11/12">
             <h1 className="uppercase font-bold text-sm md:text-base  text-light-accent">
               {" "}
-              Mange Your Blog Information
+              Update Your Blog Information
             </h1>
             <h1 className="md:text-3xl text-xl font-bold py-5 text-light-primary-color">
-              Post Blog
+              Update Blog
             </h1>
-            <form onSubmit={handleBlogPost}>
+            <form onSubmit={handleUpdate}>
               <div className="form-control flex flex-row w-full gap-5">
                 <div className="w-full">
                   <label className="label" htmlFor="account">
@@ -69,6 +60,7 @@ const AddBlog = () => {
                     required
                     className="input input-bordered mb-4 w-full"
                     placeholder="Enter you Blog Title"
+                    defaultValue={blogTitle}
                   />
                 </div>
                 <div className="w-full">
@@ -79,6 +71,7 @@ const AddBlog = () => {
                   <input
                     type="text"
                     name="blogImg"
+                    defaultValue={blogImg}
                     placeholder="Enter your Blog Image URL"
                     id="name"
                     className="input input-bordered mb-4 w-full"
@@ -94,12 +87,10 @@ const AddBlog = () => {
                   <select
                     id="category"
                     name="category"
+                    defaultValue={category}
                     required
                     className="select select-bordered bg-opacity-10 w-full"
                   >
-                    <option disabled selected>
-                      Select Genre
-                    </option>
                     <option>Web Development</option>
                     <option>Mobile Apps</option>
                     <option>Artificial Intelligence</option>
@@ -114,8 +105,9 @@ const AddBlog = () => {
                   <textarea
                     className="textarea h-12 textarea-bordered"
                     placeholder="Enter Your Long Description"
-                    id="longDes"
+                    id="tags"
                     name="addTags"
+                    defaultValue={addTags}
                     required
                   ></textarea>
                 </div>
@@ -130,6 +122,7 @@ const AddBlog = () => {
                   placeholder="Enter Your Short Description"
                   id="shortDes"
                   name="shortDes"
+                  defaultValue={shortDes}
                   required
                 ></textarea>
               </div>
@@ -142,6 +135,7 @@ const AddBlog = () => {
                   placeholder="Enter Your Long Description"
                   id="longDes"
                   name="longDes"
+                  defaultValue={longDes}
                   required
                 ></textarea>
               </div>
@@ -163,4 +157,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default UpdateBlog;

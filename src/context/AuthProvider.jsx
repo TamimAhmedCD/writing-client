@@ -54,14 +54,14 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if(currentUser?.email) {
         const user = {email: currentUser?.email}
-        axios.post('https://wirting-server.vercel.app/jwt', user, {withCredentials: true})
+        axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
         .then(res => {
           console.log(res.data);
           setLoading(false)
         })
       }
       else {
-        axios.post('https://wirting-server.vercel.app/logout', {}, {
+        axios.post('http://localhost:5000/logout', {}, {
           withCredentials: true
         })
         .then(res => {

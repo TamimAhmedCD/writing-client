@@ -5,6 +5,7 @@ import authContext from "../context/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Loading from "../pages/Home/Loading";
+import { Link } from "react-router-dom";
 
 const Comments = ({ blogs }) => {
   const [toggleComment, setToggleComment] = useState(false);
@@ -37,7 +38,7 @@ const Comments = ({ blogs }) => {
 
     if (user) {
       axios
-        .post("https://wirting-server.vercel.app/comments", newComment, {
+        .post("http://localhost:5000/comments", newComment, {
           headers: {
             "Content-Type": "application/json", // Set the content type to JSON
           },
@@ -55,7 +56,7 @@ const Comments = ({ blogs }) => {
   // Fetch comment data
   useEffect(() => {
     if (user) {
-      axios.get(`https://wirting-server.vercel.app/comments/${blogId}`).then((response) => {
+      axios.get(`http://localhost:5000/comments/${blogId}`).then((response) => {
         setComments(response.data);
         setLoading(false);
       });
@@ -81,17 +82,32 @@ const Comments = ({ blogs }) => {
 
   return (
     <div className="my-5 border-t border-[#29294b40]">
-      <p
-        className="group relative w-max mt-5 text-light-accent font-medium cursor-pointer"
-        onClick={toggleComments}
-      >
-        <span>
-          {toggleComment
-            ? "Hide Comments"
-            : `View Comments (${comments.length})`}
-        </span>
-        <span className="absolute -bottom-1 left-0 w-full transition-all h-[1.3px] bg-light-accent group-hover:w-0"></span>
-      </p>
+      <div className="flex items-center mt-5 justify-between">
+        {" "}
+        <p
+          className="group relative w-max text-light-accent font-medium cursor-pointer"
+          onClick={toggleComments}
+        >
+          <span>
+            {toggleComment
+              ? "Hide Comments"
+              : `View Comments (${comments.length})`}
+          </span>
+          <span className="absolute -bottom-1 left-0 w-full transition-all h-[1.3px] bg-light-accent group-hover:w-0"></span>
+        </p>
+        {user.email === authorEmail ? (
+          <Link to={`/blog-update/${blogId}`}>
+            <Button
+              variant="gradient"
+              className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
+            >
+              <span>Edit</span>
+            </Button>
+          </Link>
+        ) : (
+          ""
+        )}
+      </div>
 
       {toggleComment && (
         <div className="mt-4">
