@@ -57,7 +57,7 @@ const route = createBrowserRouter([
             <BlogDetails />
           </PrivateRoutes>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`)
+        loader: ({params}) => fetch(`https://wirting-server.vercel.app/blog/${params.id}`)
       },
       {
         path: "/blog-update/:id",
@@ -66,7 +66,7 @@ const route = createBrowserRouter([
             <UpdateBlog />
           </PrivateRoutes>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`)
+        loader: ({params}) => fetch(`https://wirting-server.vercel.app/blog/${params.id}`)
       },
       {
         path: "/login",

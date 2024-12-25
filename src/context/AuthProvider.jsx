@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
 
   // Update user profile
   const updateUserProfile = (updatedData) => {
-    setLoading(true)
+    setLoading(true);
     return updateProfile(auth.currentUser, updatedData);
   };
 
@@ -52,22 +52,29 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      if(currentUser?.email) {
-        const user = {email: currentUser?.email}
-        axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
-        .then(res => {
-          console.log(res.data);
-          setLoading(false)
-        })
-      }
-      else {
-        axios.post('http://localhost:5000/logout', {}, {
-          withCredentials: true
-        })
-        .then(res => {
-          console.log(('logout'),res.data);
-          setLoading(false)
-        })
+      if (currentUser?.email) {
+        const user = { email: currentUser?.email };
+        axios
+          .post("https://wirting-server.vercel.app/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            res;
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post(
+            "https://wirting-server.vercel.app/logout",
+            {},
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            res;
+            setLoading(false);
+          });
       }
     });
     return unsubscribe;

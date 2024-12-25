@@ -20,7 +20,7 @@ const UpdateBlog = () => {
 
     newBlog.addTags = initialData.addTags.split("\n");
 
-    const res = await axios.put(`http://localhost:5000/blog/${_id}`, newBlog);
+    const res = await axios.put(`https://wirting-server.vercel.app/blog/${_id}`, newBlog);
     if(res.data.modifiedCount >0) {
         toast.success('Blog Updated Successfully')
         navigate('/')

@@ -28,11 +28,11 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         const user2 = {email: result.user.email}
-        axios.post('http://localhost:5000/jwt', user2, {
+        axios.post('https://wirting-server.vercel.app/jwt', user2, {
           withCredentials: true
         })
         .then(res => {
-          console.log(res.data);
+res
         })
         navigate(location?.state ? location.state : "/");
         toast.success("Login Success");

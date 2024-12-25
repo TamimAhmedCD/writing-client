@@ -1,12 +1,16 @@
 import { Button } from "@material-tailwind/react";
 import { useContext } from "react";
 import authContext from "./../../context/AuthContext";
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddBlog = () => {
   const { user } = useContext(authContext);
   const userEmail = user.email;
   const userPhoto = user.photoURL;
   const authorName = user.displayName;
+
+  const navigate = useNavigate()
   // Post Blog
   const handleBlogPost = (e) => {
     e.preventDefault();
@@ -21,9 +25,8 @@ const AddBlog = () => {
     newBlog.authorName = authorName;
     const createdAt = new Date().toISOString();
     newBlog.createdAt = createdAt;
-    console.log(newBlog);
 
-    fetch("http://localhost:5000/blog", {
+    fetch("https://wirting-server.vercel.app/blog", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -32,7 +35,10 @@ const AddBlog = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if(data) {
+          toast.success('Successfully added your Blog')
+          navigate('/')
+        }
       });
   };
 
