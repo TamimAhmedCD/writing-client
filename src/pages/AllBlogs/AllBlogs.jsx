@@ -25,7 +25,7 @@ const AllBlogs = () => {
   const fetchAllBlogs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("https://wirting-server.vercel.app/blog");
+      const response = await axios.get("http://localhost:5000/blog");
       setBlogs(response.data);
       setLoading(false);
     } catch (error) {
@@ -37,7 +37,7 @@ const AllBlogs = () => {
   // Fetch blogs by category
   const fetchBlogsByCategories = async () => {
     try {
-      const response = await axios.get("https://wirting-server.vercel.app/categories");
+      const response = await axios.get("http://localhost:5000/categories");
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories", error);
@@ -49,7 +49,7 @@ const AllBlogs = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://wirting-server.vercel.app/blogCategory?category=${category}`
+        `http://localhost:5000/blogCategory?category=${category}`
       );
       setBlogs(response.data);
       setLoading(false);
@@ -64,7 +64,7 @@ const AllBlogs = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://wirting-server.vercel.app/search?q=${query}` // API endpoint with query parameter
+        `http://localhost:5000/search?q=${query}` // API endpoint with query parameter
       );
       setBlogs(response.data);
       setLoading(false);
@@ -124,7 +124,7 @@ const AllBlogs = () => {
     };
 
     axios
-      .post("https://wirting-server.vercel.app/wishlist", wishlistData, {
+      .post("http://localhost:5000/wishlist", wishlistData, {
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
         },
@@ -198,7 +198,7 @@ const AllBlogs = () => {
           <Loading />
         ) : (
           blogs.map((blog) => {
-            const formattedDate = formatDate(blog.createdAt); // Format each blog's date
+            const formattedDate = formatDate(blog.createdAt);
 
             return (
               <div key={blog._id} className="space-y-5 flex flex-col mb-5">

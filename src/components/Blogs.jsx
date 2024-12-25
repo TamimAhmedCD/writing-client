@@ -2,11 +2,11 @@ import { Button, IconButton } from "@material-tailwind/react";
 import { useContext, useEffect, useState } from "react";
 import { MdTimer } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Loading from "./../pages/Home/Loading";
 import { FaHeart } from "react-icons/fa6";
 import authContext from "../context/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import SkeletonLoader from "./SkeletonLoader";
 
 const Blogs = () => {
   const [recentBlog, setRecentBlog] = useState([]);
@@ -15,7 +15,7 @@ const Blogs = () => {
 
   // Fetch recent blogs data from API
   useEffect(() => {
-    fetch("https://wirting-server.vercel.app/recentBlog")
+    fetch("http://localhost:5000/recentBlog")
       .then((res) => res.json())
       .then((data) => {
         setRecentBlog(data);
@@ -24,7 +24,7 @@ const Blogs = () => {
   }, []);
 
   if (loading) {
-    return <Loading />;
+    return <SkeletonLoader />;
   }
 
   // Function to format the date
@@ -56,7 +56,7 @@ const Blogs = () => {
     };
 
     axios
-      .post("https://wirting-server.vercel.app/wishlist", wishlistData, {
+      .post("http://localhost:5000/wishlist", wishlistData, {
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
         },
