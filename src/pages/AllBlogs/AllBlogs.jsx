@@ -6,7 +6,6 @@ import { Button, IconButton } from "@material-tailwind/react";
 import authContext from "../../context/AuthContext";
 import { FaHeart } from "react-icons/fa6";
 import { toast } from "react-toastify";
-import SkeletonLoader from "./../../components/SkeletonLoader";
 import SkeletonLoader2 from "../../components/SkeletonLoader2";
 
 const AllBlogs = () => {
@@ -27,7 +26,7 @@ const AllBlogs = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://wirting-server.vercel.app/blog"
+        "http://localhost:5000/blog"
       );
       setBlogs(response.data);
       setLoading(false);
@@ -41,7 +40,7 @@ const AllBlogs = () => {
   const fetchBlogsByCategories = async () => {
     try {
       const response = await axios.get(
-        "https://wirting-server.vercel.app/categories"
+        "http://localhost:5000/categories"
       );
       setCategories(response.data);
     } catch (error) {
@@ -54,7 +53,7 @@ const AllBlogs = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://wirting-server.vercel.app/blogCategory?category=${category}`
+        `http://localhost:5000/blogCategory?category=${category}`
       );
       setBlogs(response.data);
       setLoading(false);
@@ -69,7 +68,7 @@ const AllBlogs = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://wirting-server.vercel.app/search?q=${query}` // API endpoint with query parameter
+        `http://localhost:5000/search?q=${query}` // API endpoint with query parameter
       );
       setBlogs(response.data);
       setLoading(false);
@@ -129,7 +128,7 @@ const AllBlogs = () => {
     };
 
     axios
-      .post("https://wirting-server.vercel.app/wishlist", wishlistData, {
+      .post("http://localhost:5000/wishlist", wishlistData, {
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
         },

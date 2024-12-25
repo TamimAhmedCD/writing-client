@@ -18,7 +18,7 @@ const FeaturedBlogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("https://wirting-server.vercel.app/blog");
+        const response = await axios.get("http://localhost:5000/blog");
         const sortedBlogs = response.data
           .map((blog) => ({
             ...blog,
