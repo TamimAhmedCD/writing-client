@@ -6,34 +6,43 @@ import authContext from "../../context/AuthContext";
 import axios from "axios";
 import Loading from "../Home/Loading";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../context/useAxiosSecure";
 
 const WishList = () => {
   const { user } = useContext(authContext);
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axiosSecure = useAxiosSecure()
 
-    // Fetch wishlist data from the backend
+  // Fetch wishlist data from the backend
   useEffect(() => {
     if (user) {
-      axios
-        .get(`http://localhost:5000/wishlist?email=${user.email}`)
-        .then((response) => {
-          setWishlist(response.data);
-          setLoading(false);
-        });
+      // axios
+      //   .get(`https://wirting-server.vercel.app/wishlist?email=${user.email}`, {
+      //     withCredentials: true,
+      //   })
+      //   .then((response) => {
+      //     setWishlist(response.data);
+      //     setLoading(false);
+      //   });
+      axiosSecure.get(`/wishlist?email=${user.email}`)
+      .then(res => {
+        setWishlist(res.data)
+        setLoading(false)
+      })
     }
   }, [user]);
-  
-  const handleDelete =async (blogId) => {
-    const response = await axios.delete("http://localhost:5000/wishlist", {
-      data: {userEmail: user.email, blogId}
-    })
-    setWishlist(wishlist.filter(item => item.blogId !== blogId))
-    
-    if(response.data.deletedCount >0) {
-      toast.success('Successfully Deleted Wishlist')
+
+  const handleDelete = async (blogId) => {
+    const response = await axios.delete("https://wirting-server.vercel.app/wishlist", {
+      data: { userEmail: user.email, blogId },
+    });
+    setWishlist(wishlist.filter((item) => item.blogId !== blogId));
+
+    if (response.data.deletedCount > 0) {
+      toast.success("Successfully Deleted Wishlist");
     }
-  }
+  };
 
   if (loading) {
     return <Loading />;
@@ -85,7 +94,8 @@ const WishList = () => {
 
               {/* Actions */}
               <div className="flex flex-row-reverse md:flex-col items-start md:items-end gap-2 justify-between">
-                <IconButton onClick={() => handleDelete(data.blogId)}
+                <IconButton
+                  onClick={() => handleDelete(data.blogId)}
                   size="sm"
                   className="rounded-full text-md bg-transparent border border-light-accent text-light-accent"
                 >

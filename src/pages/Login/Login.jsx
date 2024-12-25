@@ -6,7 +6,7 @@ import { VscGithubInverted } from "react-icons/vsc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import authContext from "../../context/AuthContext";
-import axios from "axios";
+import axios  from 'axios';
 
 const Login = () => {
   const { singInUser, setUser, signInWithGoogle } = useContext(authContext);
@@ -27,10 +27,13 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        const userS = { email: email };
-        axios.post("https://wirting-server.vercel.app/jwt", userS, {withCredentials: true}).then((res) => {
+        const user2 = {email: result.user.email}
+        axios.post('https://wirting-server.vercel.app/jwt', user2, {
+          withCredentials: true
+        })
+        .then(res => {
           console.log(res.data);
-        });
+        })
         navigate(location?.state ? location.state : "/");
         toast.success("Login Success");
       })
