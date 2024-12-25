@@ -139,7 +139,7 @@ const AllBlogs = () => {
   return (
     <div className="w-11/12 md:w-10/12 mx-auto">
       {/* header */}
-      <div className="mt-5 md:mt-16 text-center md:w-4/5 md:mx-auto">
+      <div className="mt-5 md:mt-10 text-center md:w-4/5 md:mx-auto">
         <h1 className="md:text-5xl text-3xl font-bold text-light-primary-color leading-tight">
           Explore Our
           <span className="bg-gradient-to-t from-[#443ea3] to-[#9895ffbb] text-transparent bg-clip-text">
