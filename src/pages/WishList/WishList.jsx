@@ -6,25 +6,33 @@ import authContext from "../../context/AuthContext";
 import axios from "axios";
 import Loading from "../Home/Loading";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../context/useAxiosSecure";
 
 const WishList = () => {
   const { user } = useContext(authContext);
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const axiosSecure  = useAxiosSecure()
+
     // Fetch wishlist data from the backend
   useEffect(() => {
     if (user) {
-      axios
-        .get(`http://localhost:5000/wishlist?email=${user.email}`, {
-          withCredentials: true
-        })
-        .then((response) => {
-          setWishlist(response.data);
-          setLoading(false);
-        });
+      // axios
+      //   .get(`http://localhost:5000/wishlist?email=${user.email}`, {
+      //     withCredentials: true
+      //   })
+      //   .then((response) => {
+      //     setWishlist(response.data);
+      //     setLoading(false);
+      //   });
+      axiosSecure.get(`/wishlist?email=${user.email}`)
+      .then(res => {
+        setWishlist(res.data)
+        setLoading(false)
+      })
     }
-  }, [user]);
+  }, [axiosSecure, user]);
   
   const handleDelete =async (blogId) => {
     const response = await axios.delete("http://localhost:5000/wishlist", {

@@ -8,8 +8,8 @@ import Login from "./../pages/Login/Login";
 import Register from "./../pages/Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import ErrorPage from "../pages/Error/ErrorPage";
-import Wishlist from "../pages/Wishlist/Wishlist";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
+import WishList from "../pages/WishList/WishList";
 
 const route = createBrowserRouter([
   {
@@ -45,7 +45,7 @@ const route = createBrowserRouter([
         path: "/wish-list",
         element: (
           <PrivateRoutes>
-            <Wishlist />
+            <WishList />
           </PrivateRoutes>
         ),
       },
