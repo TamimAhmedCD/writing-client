@@ -25,7 +25,7 @@ const AllBlogs = () => {
   const fetchAllBlogs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/blog");
+      const response = await axios.get("https://wirting-server.vercel.app/blog");
       setBlogs(response.data);
       setLoading(false);
     } catch (error) {
@@ -37,7 +37,7 @@ const AllBlogs = () => {
   // Fetch blogs by category
   const fetchBlogsByCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/categories");
+      const response = await axios.get("https://wirting-server.vercel.app/categories");
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories", error);
@@ -49,7 +49,7 @@ const AllBlogs = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/blogCategory?category=${category}`
+        `https://wirting-server.vercel.app/blogCategory?category=${category}`
       );
       setBlogs(response.data);
       setLoading(false);
@@ -64,7 +64,7 @@ const AllBlogs = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/search?q=${query}` // API endpoint with query parameter
+        `https://wirting-server.vercel.app/search?q=${query}` // API endpoint with query parameter
       );
       setBlogs(response.data);
       setLoading(false);
@@ -124,7 +124,7 @@ const AllBlogs = () => {
     };
 
     axios
-      .post("http://localhost:5000/wishlist", wishlistData, {
+      .post("https://wirting-server.vercel.app/wishlist", wishlistData, {
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
         },

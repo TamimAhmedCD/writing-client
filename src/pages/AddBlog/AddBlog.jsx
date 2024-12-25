@@ -23,7 +23,7 @@ const AddBlog = () => {
     newBlog.createdAt = createdAt;
     console.log(newBlog);
 
-    fetch("http://localhost:5000/blog", {
+    fetch("https://wirting-server.vercel.app/blog", {
       method: "POST",
       headers: {
         "content-type": "application/json",

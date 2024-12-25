@@ -37,7 +37,7 @@ const Comments = ({ blogs }) => {
 
     if (user) {
       axios
-        .post("http://localhost:5000/comments", newComment, {
+        .post("https://wirting-server.vercel.app/comments", newComment, {
           headers: {
             "Content-Type": "application/json", // Set the content type to JSON
           },
@@ -55,7 +55,7 @@ const Comments = ({ blogs }) => {
   // Fetch comment data
   useEffect(() => {
     if (user) {
-      axios.get(`http://localhost:5000/comments/${blogId}`).then((response) => {
+      axios.get(`https://wirting-server.vercel.app/comments/${blogId}`).then((response) => {
         setComments(response.data);
         setLoading(false);
       });

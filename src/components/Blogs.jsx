@@ -15,7 +15,7 @@ const Blogs = () => {
 
   // Fetch recent blogs data from API
   useEffect(() => {
-    fetch("http://localhost:5000/recentBlog")
+    fetch("https://wirting-server.vercel.app/recentBlog")
       .then((res) => res.json())
       .then((data) => {
         setRecentBlog(data);
@@ -56,7 +56,7 @@ const Blogs = () => {
     };
 
     axios
-      .post("http://localhost:5000/wishlist", wishlistData, {
+      .post("https://wirting-server.vercel.app/wishlist", wishlistData, {
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
         },

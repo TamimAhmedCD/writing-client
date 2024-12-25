@@ -16,7 +16,7 @@ const WishList = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/wishlist?email=${user.email}`)
+        .get(`https://wirting-server.vercel.app/wishlist?email=${user.email}`)
         .then((response) => {
           setWishlist(response.data);
           setLoading(false);
@@ -25,7 +25,7 @@ const WishList = () => {
   }, [user]);
   
   const handleDelete =async (blogId) => {
-    const response = await axios.delete("http://localhost:5000/wishlist", {
+    const response = await axios.delete("https://wirting-server.vercel.app/wishlist", {
       data: {userEmail: user.email, blogId}
     })
     setWishlist(wishlist.filter(item => item.blogId !== blogId))
