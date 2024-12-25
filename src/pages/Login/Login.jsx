@@ -28,7 +28,7 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         const userS = { email: email };
-        axios.post("http://localhost:5000/jwt", userS, {withCredentials: true}).then((res) => {
+        axios.post("https://wirting-server.vercel.app/jwt", userS, {withCredentials: true}).then((res) => {
           console.log(res.data);
         });
         navigate(location?.state ? location.state : "/");
