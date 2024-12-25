@@ -10,7 +10,7 @@ import {
   MenuHandler,
   Menu,
 } from "@material-tailwind/react";
-
+import { motion } from "framer-motion"; // Import Framer Motion
 import logo from "../assets/logo.svg";
 import { Link, NavLink } from "react-router-dom";
 import { FaCircleUser, FaHeart } from "react-icons/fa6";
@@ -100,8 +100,14 @@ const NavbarR = () => {
       </Typography>
     </ul>
   );
+
   return (
-    <div className="sticky top-0 z-10">
+    <motion.div
+      initial={{ y: -100, opacity: 0 }} // Animation on load
+      animate={{ y: 0, opacity: 1 }} // Smooth transition
+      transition={{ duration: 0.5, ease: "easeOut" }} // Duration and easing
+      className="sticky top-0 z-10"
+    >
       <Navbar className="bg-white h-max max-w-full rounded-none border-none px-0 py-2 lg:py-4 shadow-none">
         <div className="flex items-center justify-between text-blue-gray-900 lg:w-10/12 w-11/12 mx-auto">
           <Link to="/">
@@ -118,11 +124,9 @@ const NavbarR = () => {
           <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-x-3">
-                {/* WatchList Menu */}
                 <NavLink to="/wish-list">
                   <FaHeart className="text-3xl text-light-primary-color" />
                 </NavLink>
-                {/* Profile Menu */}
                 <Menu placement="bottom-start">
                   <MenuHandler>
                     {user && user.photoURL ? (
@@ -282,7 +286,7 @@ const NavbarR = () => {
           )}
         </MobileNav>
       </Navbar>
-    </div>
+    </motion.div>
   );
 };
 
