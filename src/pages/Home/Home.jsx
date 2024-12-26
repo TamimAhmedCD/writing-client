@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Hero from "../../components/Hero";
 import TrendingCategory from "../../components/TrendingCategory";
 import Blogs from "../../components/Blogs";
+import LearningMotive from "../../components/LearningMotive";
 
 const Home = () => {
   useEffect(() => {
@@ -34,6 +35,9 @@ const Home = () => {
       </motion.div>
       <motion.div variants={fadeIn}>
         <Blogs />
+      </motion.div>
+      <motion.div variants={fadeIn}>
+        <LearningMotive />
       </motion.div>
     </motion.div>
   );
