@@ -56,7 +56,7 @@ const Blogs = () => {
     };
 
     axios
-      .post("https://wirting-server.vercel.app/wishlist", wishlistData, {
+      .post("https://wirting-server.vercel.app/wishli  st", wishlistData, {
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
         },
