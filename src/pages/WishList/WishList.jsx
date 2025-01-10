@@ -7,6 +7,7 @@ import axios from "axios";
 import Loading from "../Home/Loading";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../context/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const WishList = () => {
   const { user } = useContext(authContext);
@@ -31,7 +32,7 @@ const WishList = () => {
         setLoading(false)
       })
     }
-  }, [user]);
+  }, [axiosSecure, user]);
 
   const handleDelete = async (blogId) => {
     const response = await axios.delete("https://wirting-server.vercel.app/wishlist", {
@@ -48,7 +49,7 @@ const WishList = () => {
     return <Loading />;
   }
   return (
-    <div className="w-11/12 md:w-10/12 mx-auto">
+    <div className="w-11/12 md:w-10/12 mx-auto h-screen">
       {/* Page Header */}
       <div className="mt-5 md:mt-16 text-center">
         <h1 className="text-3xl md:text-5xl font-bold text-light-primary-color leading-tight">
@@ -101,13 +102,14 @@ const WishList = () => {
                 >
                   <IoMdClose />
                 </IconButton>
-                <Button
-                  variant="gradient"
-                  size="sm"
-                  className="btn bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
-                >
-                  <span>Details</span>
-                </Button>
+                <Link to={`/blog-details/${data.blogId}`}>
+                    <Button
+                      variant="gradient"
+                      className="normal-case font-medium text-base bg-gradient-to-t from-[#514dcc] to-[#9895ff] hover:from-[#4440b4] hover:to-[#9895ff] shadow-none hover:shadow-[#9895ffa8] hover:border-none border-none"
+                    >
+                      <span>Details</span>
+                    </Button>
+                  </Link>
               </div>
             </div>
           </div>

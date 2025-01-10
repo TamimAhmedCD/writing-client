@@ -36,11 +36,7 @@ const route = createBrowserRouter([
       },
       {
         path: "/featured-blogs",
-        element: (
-          <PrivateRoutes>
-            <FeaturedBlogs />
-          </PrivateRoutes>
-        ),
+        element: <FeaturedBlogs />,
       },
       {
         path: "/wish-list",
@@ -52,12 +48,9 @@ const route = createBrowserRouter([
       },
       {
         path: "/blog-details/:id",
-        element: (
-          <PrivateRoutes>
-            <BlogDetails />
-          </PrivateRoutes>
-        ),
-        loader: ({params}) => fetch(`https://wirting-server.vercel.app/blog/${params.id}`)
+        element: <BlogDetails />,
+        loader: ({ params }) =>
+          fetch(`https://wirting-server.vercel.app/blog/${params.id}`),
       },
       {
         path: "/blog-update/:id",
@@ -66,7 +59,8 @@ const route = createBrowserRouter([
             <UpdateBlog />
           </PrivateRoutes>
         ),
-        loader: ({params}) => fetch(`https://wirting-server.vercel.app/blog/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`https://wirting-server.vercel.app/blog/${params.id}`),
       },
       {
         path: "/login",

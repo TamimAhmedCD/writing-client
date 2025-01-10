@@ -11,7 +11,7 @@ const Comments = ({ blogs }) => {
   const [toggleComment, setToggleComment] = useState(false);
   const { user } = useContext(authContext);
   const blogId = blogs._id;
-  const userPhoto = user.photoURL;
+  const userPhoto = user?.photoURL;
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const authorEmail = blogs.userEmail;
@@ -55,12 +55,12 @@ const Comments = ({ blogs }) => {
 
   // Fetch comment data
   useEffect(() => {
-    if (user) {
-      axios.get(`https://wirting-server.vercel.app/comments/${blogId}`).then((response) => {
+    axios
+      .get(`https://wirting-server.vercel.app/comments/${blogId}`)
+      .then((response) => {
         setComments(response.data);
         setLoading(false);
       });
-    }
   }, [blogId, user]);
 
   // Function to format the date
@@ -95,7 +95,7 @@ const Comments = ({ blogs }) => {
           </span>
           <span className="absolute -bottom-1 left-0 w-full transition-all h-[1.3px] bg-light-accent group-hover:w-0"></span>
         </p>
-        {user.email === authorEmail ? (
+        {user?.email === authorEmail ? (
           <Link to={`/blog-update/${blogId}`}>
             <Button
               variant="gradient"
@@ -149,7 +149,7 @@ const Comments = ({ blogs }) => {
           )}
 
           {/* Post Comment Form */}
-          {user.email === authorEmail ? (
+          {user?.email === authorEmail ? (
             <p className="text-red-500 font-medium">
               Cannot comment on your own blog.
             </p>
@@ -167,7 +167,7 @@ const Comments = ({ blogs }) => {
                     type="text"
                     name="userName"
                     id="account"
-                    value={user.displayName}
+                    value={user?.displayName}
                     readOnly
                     required
                     className="input input-bordered w-full bg-transparent"
@@ -181,7 +181,7 @@ const Comments = ({ blogs }) => {
                   <input
                     type="text"
                     name="userEmail"
-                    value={user.email}
+                    value={user?.email}
                     readOnly
                     id="name"
                     className="input input-bordered w-full bg-transparent"

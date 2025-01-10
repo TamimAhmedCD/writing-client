@@ -31,6 +31,7 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+
   // Update user profile
   const updateUserProfile = (updatedData) => {
     setLoading(true);
