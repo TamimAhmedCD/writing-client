@@ -14,3 +14,7 @@ body {
     transition: all;
     transition-duration: 0.40s;
 }
+
+html {
+    scroll-behavior: smooth;
+}
