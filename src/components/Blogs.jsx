@@ -62,7 +62,7 @@ const Blogs = () => {
         },
       })
       .then((response) => {
-        if(response.data) {
+        if (response.data) {
           toast.success('Blog added on Wishlist')
         };
       });
