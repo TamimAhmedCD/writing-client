@@ -113,6 +113,7 @@ const Comments = ({ blogs }) => {
       {toggleComment && (
         <div className="mt-4">
           {/* Comments List */}
+
           {comments.length > 0 ? (
             comments.map((comment) => {
               const formattedDate = formatDate(comment.createdAt); // Format each blog's date
