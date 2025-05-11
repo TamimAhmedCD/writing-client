@@ -54,6 +54,7 @@ const Comments = ({ blogs }) => {
   };
 
   // Fetch comment data
+
   useEffect(() => {
     axios
       .get(`https://wirting-server.vercel.app/comments/${blogId}`)
